@@ -34,3 +34,6 @@ class History:
         for i, calc in enumerate(self.saved_calculations, 1):
             a, op, b, result = calc
             print(f"Saved calculation {i}: {a} {op} {b} = {result}")
+
+
+
