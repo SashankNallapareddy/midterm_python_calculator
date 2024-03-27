@@ -2,6 +2,7 @@ import calculator
 import autotest
 
 def main():
+    """Main function to run the program."""
     while True:
         print("Select operation:")
         print("1. Use Calculator")

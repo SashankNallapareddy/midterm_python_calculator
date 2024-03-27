@@ -1,3 +1,12 @@
+"""Autotest Module
+
+This module provides functionality for generating fake data and performing automated tests
+on the calculator module.
+
+Functions:
+    autotest: Generate fake data and perform automated tests.
+"""
+
 import coverage
 from faker import Faker
 import calculator
