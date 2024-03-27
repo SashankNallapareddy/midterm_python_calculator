@@ -1,12 +1,9 @@
 import logging
 
-# Configure logging to output to both console and file
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s',
-                    handlers=[
-                        logging.FileHandler('calculator.log'),
-                        logging.StreamHandler()
-                    ])
+# Configure logging to output only to file
+logging.basicConfig(filename='calculator.log',
+                    level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def add(x, y):
     """Add two numbers."""
@@ -46,9 +43,6 @@ def get_valid_float_input(prompt):
 
 def menu():
     """Display calculator menu and perform selected operation."""
-    num1 = get_valid_float_input("Enter first number: ")
-    num2 = get_valid_float_input("Enter second number: ")
-
     print("Select operation:")
     print("1. Add")
     print("2. Subtract")
@@ -58,6 +52,9 @@ def menu():
     choice = input("Enter choice (1/2/3/4): ")
 
     if choice in ('1', '2', '3', '4'):
+        num1 = get_valid_float_input("Enter first number: ")
+        num2 = get_valid_float_input("Enter second number: ")
+
         if choice == '1':
             result = add(num1, num2)
         elif choice == '2':
