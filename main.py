@@ -1,33 +1,18 @@
 import calculator
+import autotest
 
 def main():
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
-
     print("Select operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
+    print("1. Use Calculator")
+    print("2. Autotest")
+    choice = input("Enter choice (1/2): ")
 
-    choice = input("Enter choice (1/2/3/4): ")
-
-    if choice in ('1', '2', '3', '4'):
-        if choice == '1':
-            result = calculator.add(num1, num2)
-        elif choice == '2':
-            result = calculator.subtract(num1, num2)
-        elif choice == '3':
-            result = calculator.multiply(num1, num2)
-        elif choice == '4':
-            try:
-                result = calculator.divide(num1, num2)
-            except ValueError as e:
-                print(e)
-                return
-        print("Result:", result)
+    if choice == '1':
+        calculator.menu()
+    elif choice == '2':
+        autotest.autotest()
     else:
-        print("Invalid Input")
+        print("Invalid choice")
 
 if __name__ == "__main__":
     main()
