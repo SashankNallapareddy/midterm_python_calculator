@@ -1,48 +1,21 @@
-import unittest
-from faker import Faker
-import calculator
+# test_calculator.py
+from calculator import process_command, save_calculation, get_valid_float_input
+from unittest.mock import patch
+import pytest
 
-class TestCalculator(unittest.TestCase):
-    """Test suite for the Calculator functions.
+@pytest.mark.parametrize("input_str, expected_result", [("1 2 add", 3), ("10 5 subtract", 5), ("2 3 multiply", 6), ("10 2 divide", 5), ("2 3 custom ^", 8)])
+def test_process_command_valid(input_str, expected_result):
+    with patch('builtins.input', side_effect=input_str.split()):
+        assert process_command(input_str) == expected_result
 
-    This test suite contains unit tests for the add, subtract, multiply, and divide
-    functions in the calculator module.
+def test_save_calculation():
+    with patch('builtins.print') as mocked_print:
+        save_calculation(2, 'add', 3, 5, 'null')
+        mocked_print.assert_called_once_with("Calculation saved successfully.")
 
-    Attributes:
-        fake (Faker): A Faker instance for generating random test data.
-    """
-
-    def setUp(self):
-        """Set up the test fixture."""
-        self.fake = Faker()
-
-    def test_add(self):
-        """Test the add function."""
-        for _ in range(5):
-            num1 = self.fake.random_int(0, 100)
-            num2 = self.fake.random_int(0, 100)
-            self.assertEqual(calculator.add(num1, num2), num1 + num2)
-
-    def test_subtract(self):
-        """Test the subtract function."""
-        for _ in range(5):
-            num1 = self.fake.random_int(0, 100)
-            num2 = self.fake.random_int(0, 100)
-            self.assertEqual(calculator.subtract(num1, num2), num1 - num2)
-
-    def test_multiply(self):
-        """Test the multiply function."""
-        for _ in range(5):
-            num1 = self.fake.random_int(0, 100)
-            num2 = self.fake.random_int(0, 100)
-            self.assertEqual(calculator.multiply(num1, num2), num1 * num2)
-
-    def test_divide(self):
-        """Test the divide function."""
-        for _ in range(5):
-            num1 = self.fake.random_int(0, 100)
-            num2 = self.fake.random_int(1, 100)  # Ensure num2 is not zero
-            self.assertEqual(calculator.divide(num1, num2), num1 / num2)
-
-if __name__ == '__main__':
-    unittest.main()
+def test_get_valid_float_input():
+    with patch('builtins.input', return_value='3.5'):
+        assert get_valid_float_input("") == 3.5
+    with patch('builtins.input', return_value='invalid'):
+        with pytest.raises(ValueError):
+            get_valid_float_input("")
