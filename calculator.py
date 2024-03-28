@@ -56,13 +56,14 @@ def divide(x, y):
 
 def save_calculation(a, op, b, result):
     """Save a calculation to history."""
-    history.save_calculation(a, op, b, result)
+    history.save_to_csv(a, op, b, result)
     print("Calculation saved successfully.")
-
 
 def view_history():
     """View the history of saved calculations."""
     history.show_history()
+
+
 
 
 def process_command(command_str):
