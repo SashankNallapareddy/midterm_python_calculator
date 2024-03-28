@@ -1,6 +1,8 @@
 import os
 import logging
+from commandManager import CommandManager
 from history import History
+
 
 # Retrieve the value of the LOG_LEVEL environment variable
 # Configure logging to output only to file
@@ -11,6 +13,7 @@ logging.basicConfig(filename='calculator.log',
 
 # Initialize History object
 history = History()
+command = CommandManager()
 
 
 def get_valid_float_input(prompt):
@@ -23,35 +26,35 @@ def get_valid_float_input(prompt):
             print("Invalid input. Please enter a valid number.")
 
 
-def add(x, y):
-    """Add two numbers."""
-    result = x + y
-    logging.info(f"Add: {x} + {y} = {result}")
-    return result
+# def add(x, y):
+#     """Add two numbers."""
+#     result = x + y
+#     logging.info(f"Add: {x} + {y} = {result}")
+#     return result
 
 
-def subtract(x, y):
-    """Subtract two numbers."""
-    result = x - y
-    logging.info(f"Subtract: {x} - {y} = {result}")
-    return result
+# def subtract(x, y):
+#     """Subtract two numbers."""
+#     result = x - y
+#     logging.info(f"Subtract: {x} - {y} = {result}")
+#     return result
 
 
-def multiply(x, y):
-    """Multiply two numbers."""
-    result = x * y
-    logging.info(f"Multiply: {x} * {y} = {result}")
-    return result
+# def multiply(x, y):
+#     """Multiply two numbers."""
+#     result = x * y
+#     logging.info(f"Multiply: {x} * {y} = {result}")
+#     return result
 
 
-def divide(x, y):
-    """Divide two numbers."""
-    if y == 0:
-        logging.error("Division by zero!")
-        raise ValueError("Cannot divide by zero!")
-    result = x / y
-    logging.info(f"Divide: {x} / {y} = {result}")
-    return result
+# def divide(x, y):
+#     """Divide two numbers."""
+#     if y == 0:
+#         logging.error("Division by zero!")
+#         raise ValueError("Cannot divide by zero!")
+#     result = x / y
+#     logging.info(f"Divide: {x} / {y} = {result}")
+#     return result
 
 
 def save_calculation(a, op, b, result):
@@ -80,13 +83,13 @@ def process_command(command_str):
 
             # Call the corresponding function based on command
             if parts[0] == 'add':
-                result = add(num1, num2)
+                result = command.add(num1, num2)
             elif parts[0] == 'subtract':
-                result = subtract(num1, num2)
+                result = command.subtract(num1, num2)
             elif parts[0] == 'multiply':
-                result = multiply(num1, num2)
+                result = command.multiply(num1, num2)
             elif parts[0] == 'divide':
-                result = divide(num1, num2)
+                result = command.divide(num1, num2)
 
             print("Result:", result)
 
