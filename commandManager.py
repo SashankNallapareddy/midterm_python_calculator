@@ -34,13 +34,22 @@ class CommandManager:
 
     @staticmethod
     def custom_action(x, y, operand):
-        """Perform a custom action."""
-        if operand == '^':
-            result = x ** y
-            logging.info(f"Custom action: {x} ^ {y} = {result}")
+        """ Perform a custom action. """
+        if operand in ['^', '**', '/', '//', '%']:
+            if operand == '^' or operand == '**':
+                result = x ** y
+            elif operand == '/':
+                result = x / y
+            elif operand == '//':
+                result = x // y
+            elif operand == '%':
+                result = x % y
+            
+            logging.info(f"Custom action: {x} {operand} {y} = {result}")
             return result
         else:
             raise ValueError("Invalid operand for custom action!")
+
 
     @staticmethod
     def perform_operation(operation, x, y, operand=None):
