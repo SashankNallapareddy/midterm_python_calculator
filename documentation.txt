@@ -1,0 +1,36 @@
+Key Features:
+
+Arithmetic Operations: Perform addition, subtraction, multiplication, and division.
+History: View and save calculations for future reference.
+Custom Commands: Execute custom operations (not directly accessible in the menu).
+Error Handling: Handles invalid user input and unexpected errors.
+Logging: Records events and errors to a file for debugging and analysis.
+
+File Configuration:
+
+Logging Configuration: Configured to output logs to to a seperate file, with log level determined by the LOG_LEVEL environment variable
+
+Classes and Functions:
+
+Functions:
+
+get_valid_float_input(prompt): Prompts the user for a valid float input, ensuring data integrity.
+save_calculation(a, op, b, result, operator): Saves a calculation to history, stored in a CSV file.
+view_history(): Displays the history of saved calculations.
+process_command(command_str): Processes user-defined commands (including basic arithmetic and custom actions). Handles potential errors and prompts for calculation saving.
+menu(): Displays a user-friendly menu for calculator actions, providing a clear interface for interaction.
+
+Imported Modules:
+
+os: Used for retrieving environment variables (for logging configuration).
+logging: Used for logging events and errors to a file.
+commandManager: Encapsulates the logic for handling arithmetic and custom actions.
+history: Manages calculation history, storing and retrieving data from a CSV file.
+Additional Notes:
+
+Hidden Functionality: Custom commands are accessible but not explicitly displayed in the menu.
+Plugin Architecture: While not explicitly implemented, the code structure suggests potential for a plugin system to extend functionality.
+
+Additionally, 
+I implemented a custom command which showcses the plugin scalability and use of commandManager
+I also implemented metric conversions as extra feature
